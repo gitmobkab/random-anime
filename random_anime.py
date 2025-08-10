@@ -1,5 +1,7 @@
 import requests
-
+from rich.layout import Layout 
+from rich.text import Text
+from rich.panel import Panel
 
 def make_request(api_url:str) -> dict | None:
     request = requests.get(api_url)
@@ -21,3 +23,7 @@ def data_unwrapper(data:dict, list_of_attributes: list[str]):
     finally:
         return target_attribute
     
+def update_layout_section(layout_name: Layout, section_name: str, output:str):
+    renderable_output = Text(output,justify="center")
+    renderable_output = Panel(renderable_output)
+    layout_name[section_name].update(renderable_output)
