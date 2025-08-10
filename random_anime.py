@@ -40,6 +40,17 @@ commands = [
 def print_program_commands(commands_description :list = commands):
     for command in commands_description:
         console.print(command,justify="center")
+
+anime_layout = Layout(name="anime_layout")
+anime_layout["anime_layout"].split_column(
+    Layout(name="title"),
+    Layout(name="content")
+)
+anime_layout["content"].split_row(
+    Layout("basic_info"),
+    Layout("synopsis")
+)
+
 if __name__ == "__main__":
     console = Console()
     console.rule("Anime Random !",characters="▓")
@@ -47,6 +58,20 @@ if __name__ == "__main__":
     print_program_commands()
     while True:
         command = Prompt.ask("command:>",case_sensitive=False,choices=[":y",":h",":n",":q"],default=":y")
-        if command == ":n":
-            break
-                
+        match command:
+            case ":y":
+                request_result = make_request("https://api.jikan.moe/v4/random/anime")
+                if request_result is None:
+                    console.print("something went wrong, Please retry later")
+                else:
+                    data_json = request_result
+                    anime = data_json["data"]
+            case ":h":
+                print_program_commands()
+            case ":n":
+                break
+            case ":q":
+                console.clear()
+                break
+            
+                                    
