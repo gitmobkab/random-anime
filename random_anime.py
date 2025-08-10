@@ -43,8 +43,8 @@ def print_program_commands(commands_description :list = commands):
 
 anime_layout = Layout(name="anime_layout")
 anime_layout["anime_layout"].split_column(
-    Layout(name="title"),
-    Layout(name="content")
+    Layout(name="title",ratio=1),
+    Layout(name="content",ratio=3)
 )
 anime_layout["content"].split_row(
     Layout("basic_info"),
@@ -66,6 +66,7 @@ if __name__ == "__main__":
                 else:
                     data_json = request_result
                     anime = data_json["data"]
+                    console.print(anime_layout)
             case "h":
                 print_program_commands()
             case "n":
