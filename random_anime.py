@@ -32,10 +32,10 @@ def update_layout_section(layout_name: Layout, section_name: str, output:str):
     layout_name[section_name].update(renderable_output)
 
 commands = [
-    "Type ':y' to print a random anime (default Command)",
-    "Type ':h' to print the commands",
-    "Type ':n' to quit the program without clearing the terminal",
-    "Type ':q' to quit the program and clear the terminal screen",
+    "Type 'y' to print a random anime (default Command)",
+    "Type 'h' to print the commands",
+    "Type 'n' to quit the program without clearing the terminal",
+    "Type 'q' to quit the program and clear the terminal screen",
 ]
 def print_program_commands(commands_description :list = commands):
     for command in commands_description:
@@ -57,20 +57,20 @@ if __name__ == "__main__":
     console.print("Welcome to Anime Random !",justify="center")
     print_program_commands()
     while True:
-        command = Prompt.ask("command:>",case_sensitive=False,choices=[":y",":h",":n",":q"],default=":y")
+        command = Prompt.ask("command:>",case_sensitive=False,choices=["y","h","n","q"],default="y")
         match command:
-            case ":y":
+            case "y":
                 request_result = make_request("https://api.jikan.moe/v4/random/anime")
                 if request_result is None:
                     console.print("something went wrong, Please retry later")
                 else:
                     data_json = request_result
                     anime = data_json["data"]
-            case ":h":
+            case "h":
                 print_program_commands()
-            case ":n":
+            case "n":
                 break
-            case ":q":
+            case "q":
                 console.clear()
                 break
             
