@@ -32,7 +32,7 @@ def update_layout_section(layout_name: Layout, section_name: str, output:str):
     layout_name[section_name].update(renderable_output)
 
 commands = [
-    "Type ':y' to print a random anime (default Command)"
+    "Type ':y' to print a random anime (default Command)",
     "Type ':h' to print the commands",
     "Type ':n' to quit the program without clearing the terminal",
     "Type ':q' to quit the program and clear the terminal screen",
