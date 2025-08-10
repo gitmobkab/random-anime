@@ -1,3 +1,4 @@
+import time
 import requests
 from rich.rule import Rule
 from rich.console import Console
@@ -5,6 +6,14 @@ from rich.layout import Layout
 from rich.text import Text
 from rich.panel import Panel
 from rich.prompt import Prompt
+from rich.progress import track
+
+def fancy_boot(wait_time:int):
+    for i in track(range(wait_time), description="Optimizing recurrents call..."):
+        time.sleep(0.3)
+        
+    for i in track(range(wait_time*2), description="supercaching..."):
+        time.sleep(0.1)
 
 def make_request(api_url:str) -> dict | None:
     request = requests.get(api_url)
@@ -20,11 +29,11 @@ def make_request(api_url:str) -> dict | None:
 anime_layout = Layout(name="anime_layout")
 anime_layout["anime_layout"].split_column(
     Layout(name="header",ratio=1),
-    Layout(name="content",ratio=3)
+    Layout(name="content",ratio=2)
 )
 anime_layout["content"].split_row(
-    Layout(name="info"),
-    Layout(name="synopsis")
+    Layout(name="info",ratio= 2),
+    Layout(name="synopsis",ratio=4)
 )
 def update_layout(data:dict,layout_instance = anime_layout):
     title = data["title"]
@@ -39,11 +48,11 @@ def update_layout(data:dict,layout_instance = anime_layout):
     info_text = Text(f"[green]Status: [/]{status}\n",justify="center")
     info_text.append_text(Text(f"[dark blue]Duration: [/]{duration}\n"))
     info_text.append_text(Text(f"[purple]Episodes: [/]{episodes}",justify="center"),)
-    layout_instance["info"].update(Panel(info_text,padding=(2,0),border_style="purple"))
+    layout_instance["info"].update(Panel(info_text,padding=(3,0),border_style="dark_green"))
 
     synopsis = data["synopsis"]
     synopsis = Text(f"[dark purple]Synopsis:[/]\n{synopsis}",justify="center")
-    layout_instance["synopsis"].update(Panel(synopsis,padding=(2,0)))
+    layout_instance["synopsis"].update(Panel(synopsis,padding=(3,0),border_style="purple"))
     
 commands = [
     "Type 'y' to print a random anime (default Command)",
@@ -57,6 +66,7 @@ def print_program_commands(commands_description :list = commands):
 
 
 if __name__ == "__main__":
+    fancy_boot(20)
     console = Console()
     console.rule("Anime Random !",characters="▓")
     console.print("Welcome to Anime Random !",justify="center")
