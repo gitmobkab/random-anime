@@ -17,5 +17,7 @@ def data_unwrapper(data:dict, list_of_attributes: list[str]):
             target_attribute = target_attribute[attribute]
     except IndexError:
         print("Error: The list should at least contain 2 attributes")
-        return
+        target_attribute = None
+    finally:
+        return target_attribute
     
