@@ -35,27 +35,27 @@ anime_layout["content"].split_row(
     Layout(name="info",ratio= 2),
     Layout(name="synopsis",ratio=4)
 )
-def update_layout(data:dict,layout_instance = anime_layout):
-    update_title(data["title"],data["url"])
-    
-    status = data["status"]
-    duration = data["duration"]
-    episodes = data["episodes"]
-    info_text = Text(f"[green]Status: [/]{status}\n",justify="center")
-    info_text.append_text(Text(f"[dark blue]Duration: [/]{duration}\n"))
-    info_text.append_text(Text(f"[purple]Episodes: [/]{episodes}",justify="center"),)
-    layout_instance["info"].update(Panel(info_text,padding=(3,0),border_style="dark_green"))
+def update_layout(data:dict,target_layout = anime_layout):
+    selected_layout = target_layout
+    update_title(data["title"],data["url"],selected_layout)
+    update_info(data["status"],data["duration"],data["episodes"],selected_layout)
 
     synopsis = data["synopsis"]
     synopsis = Text(f"[dark purple]Synopsis:[/]\n{synopsis}",justify="center")
-    layout_instance["synopsis"].update(Panel(synopsis,padding=(3,0),border_style="purple"))
+    target_layout["synopsis"].update(Panel(synopsis,padding=(3,0),border_style="purple"))
     
-def update_title(title,url,layout_instance:Layout=anime_layout):
+def update_title(title,url,target_layout:Layout):
     header_content = Text(f"Title: {title}\n",justify="center")
     header_content.append_text(Text(f"Url: {url}",style=url))
     header_content.highlight_words(["title","url"],"bold blue",case_sensitive=False)
-    layout_instance["header"].update(Panel(header_content,padding=(1,0),border_style="dark_blue"))
+    target_layout["header"].update(Panel(header_content,padding=(1,0),border_style="dark_blue"))
     
+def update_info(status,duration,episodes,target_layout:Layout):
+    info_text = Text(f"Status: {status}\n",justify="center")
+    info_text.append_text(Text(f"Duration: {duration}\n"))
+    info_text.append_text(Text(f"Episodes: {episodes}",justify="center"))
+    info_text.highlight_words(["status","duration","episodes"],style="bold dark_purple",case_sensitive=False)
+    target_layout["info"].update(Panel(info_text,padding=(3,0),border_style="dark_green"))
 
 commands = [
     "Type 'y' to print a random anime (default Command)",
