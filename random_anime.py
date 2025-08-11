@@ -36,11 +36,7 @@ anime_layout["content"].split_row(
     Layout(name="synopsis",ratio=4)
 )
 def update_layout(data:dict,layout_instance = anime_layout):
-    title = data["title"]
-    url = data["url"]
-    header_content = Text(f"[blue]Title:[/blue]{title}\n",justify="center")
-    header_content.append_text(Text(f"[dark blue]url: [/]{url}",style=url))
-    layout_instance["header"].update(Panel(header_content,padding=(1,0),border_style="dark_blue"))
+    update_title(data["title"],data["url"])
     
     status = data["status"]
     duration = data["duration"]
@@ -54,6 +50,13 @@ def update_layout(data:dict,layout_instance = anime_layout):
     synopsis = Text(f"[dark purple]Synopsis:[/]\n{synopsis}",justify="center")
     layout_instance["synopsis"].update(Panel(synopsis,padding=(3,0),border_style="purple"))
     
+def update_title(title,url,layout_instance:Layout=anime_layout):
+    header_content = Text(f"Title: {title}\n",justify="center")
+    header_content.append_text(Text(f"Url: {url}",style=url))
+    header_content.highlight_words(["title","url"],"bold blue",case_sensitive=False)
+    layout_instance["header"].update(Panel(header_content,padding=(1,0),border_style="dark_blue"))
+    
+
 commands = [
     "Type 'y' to print a random anime (default Command)",
     "Type 'h' to print the commands",
