@@ -39,10 +39,7 @@ def update_layout(data:dict,target_layout = anime_layout):
     selected_layout = target_layout
     update_title(data["title"],data["url"],selected_layout)
     update_info(data["status"],data["duration"],data["episodes"],selected_layout)
-
-    synopsis = data["synopsis"]
-    synopsis = Text(f"[dark purple]Synopsis:[/]\n{synopsis}",justify="center")
-    target_layout["synopsis"].update(Panel(synopsis,padding=(3,0),border_style="purple"))
+    update_synopsis(data["synopsis"],selected_layout)
     
 def update_title(title,url,target_layout:Layout):
     header_content = Text(f"Title: {title}\n",justify="center")
@@ -54,8 +51,14 @@ def update_info(status,duration,episodes,target_layout:Layout):
     info_text = Text(f"Status: {status}\n",justify="center")
     info_text.append_text(Text(f"Duration: {duration}\n"))
     info_text.append_text(Text(f"Episodes: {episodes}",justify="center"))
-    info_text.highlight_words(["status","duration","episodes"],style="bold dark_purple",case_sensitive=False)
+    info_text.highlight_words(["status","duration","episodes"],style="bold dark_green",case_sensitive=False)
     target_layout["info"].update(Panel(info_text,padding=(3,0),border_style="dark_green"))
+    
+def update_synopsis(synopsis,target_layout:Layout):
+    synopsis = Text(f"Synopsis:\n{synopsis}",justify="center")
+    synopsis.highlight_words(["synopsis"],style="bold dark_purple",case_sensitive=False)
+    target_layout["synopsis"].update(Panel(synopsis,padding=(3,0),border_style="purple"))
+    
 
 commands = [
     "Type 'y' to print a random anime (default Command)",
