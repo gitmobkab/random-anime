@@ -35,8 +35,8 @@ launch.bat
 
 if you encounter problems while launching the batch file such as:
 
-- Python is not installed
-- invalid command syntax and the script exiting out of nowwhere
+- "Python is not installed" even if you have python in your system
+- invalid command syntax and the script exiting without proper explanation
 
 you can try to manually launch the python file with:
 
@@ -67,13 +67,13 @@ after that just lauch the bash file by typing:
 
 if you encounter problems while launching the bash file such as:
 
-- Python is not installed
-- invalid command syntax and the script exiting out of nowwhere
+- "Python is not installed" even if you have python in your system
+- invalid command syntax and the script exiting without proper explanation
 
 you can try to manually launch the python file with:
 
 ```
-python random_anime.py
+python3 random_anime.py
 ```
 
 </details>
