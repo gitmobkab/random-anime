@@ -46,7 +46,7 @@ python random_anime.py
 
 </details>
 
-- Mac/Linux
+### Mac/Linux
 
 first go download the python file manually or clone the directory by pasting this command in your shell:
 
