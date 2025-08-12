@@ -8,4 +8,4 @@ then
     exit 1
 fi
 
-pip install requests flask pillow
+pip install requests rich
