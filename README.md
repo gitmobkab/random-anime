@@ -46,6 +46,7 @@ python random_anime.py
 
 </details>
 
+
 ### Mac/Linux
 
 first go download the python file manually or clone the directory by pasting this command in your shell:
@@ -60,6 +61,10 @@ after that just lauch the bash file by typing:
 ```
 ./launch.sh
 ```
+
+> [!NOTE]
+> The bash script will try to install the packages through pip3
+> if you don't use pip3 it's adviced to install the packages yourself and launch directly the python file with: `python3 random_anime.py`
 
 <details>
 
