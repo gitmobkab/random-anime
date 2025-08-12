@@ -9,7 +9,7 @@ if %errorlevel% neq 0 (
     exit /b
 )
 echo "By default, the launcher will try to download the required libraries."
-echo "if you already have them installed you can skip by typing 'y'"
+echo "if you already have them installed you can skip by typing 'n'"
 
 :question_loop
 set /p answer="install or update required libraries ?[y/n]:"
