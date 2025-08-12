@@ -4,8 +4,8 @@ a python script that print a random anime data in a stylish way in your CLI (Com
 
 ## Summary
 
-[Requirements](#requirements)
-[How To use](#how-to-use)
+- [Requirements](#requirements)
+- [How To use](#how-to-use)
 
 ## requirements 
 
@@ -26,7 +26,7 @@ cd random-anime
 
 after that just lauch the batch file by typing:
 
-````
+```
 launch.bat
 ```
 <details>
@@ -57,7 +57,7 @@ cd random-anime
 
 after that just lauch the bash file by typing:
 
-````
+```
 ./launch.sh
 ```
 
