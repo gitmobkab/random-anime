@@ -6,14 +6,6 @@ from rich.layout import Layout
 from rich.text import Text
 from rich.panel import Panel
 from rich.prompt import Prompt
-from rich.progress import track
-
-def fancy_boot(wait_time:int):
-    for i in track(range(wait_time), description="Optimizing recurrents call..."):
-        time.sleep(0.3)
-        
-    for i in track(range(wait_time*2), description="supercaching..."):
-        time.sleep(0.1)
 
 def make_request(api_url:str) -> dict | None:
     request = requests.get(api_url)
@@ -72,7 +64,6 @@ def print_program_commands(commands_description :list = commands):
 
 
 if __name__ == "__main__":
-    fancy_boot(20)
     console = Console()
     console.rule("Anime Random !",characters="▓")
     console.print("Welcome to Anime Random !",justify="center")
